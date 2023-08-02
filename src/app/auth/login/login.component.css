@@ -1,0 +1,19 @@
+.loginForm {
+  display: flex;
+  justify-content: center;
+}
+
+mat-card {
+  width: 435px;
+  background-color: rgb(255, 255, 255);
+}
+
+mat-form-field {
+  width: 400px;
+  display: flex;
+  margin-top: 10px;
+}
+
+mat-error {
+  display: inline;
+}
