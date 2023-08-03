@@ -2,6 +2,8 @@
 import { importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
+import { provideToastr } from 'ngx-toastr';
 
 import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
@@ -13,6 +15,9 @@ import { RegisterComponent } from './app/auth/register/register.component';
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(BrowserAnimationsModule),
+    provideHttpClient(),
+    provideToastr(),
+
     provideRouter([
       { path: '', component: MainComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },

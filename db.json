@@ -1,3 +1,13 @@
 {
-  "users": [{}]
+  "users": [
+    {},
+    {
+      "id": "edward123",
+      "username": "edward123",
+      "password": "edward123",
+      "email": "edward123@edward123",
+      "role": "user",
+      "isActive": true
+    }
+  ]
 }

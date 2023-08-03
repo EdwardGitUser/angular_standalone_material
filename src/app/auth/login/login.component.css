@@ -16,4 +16,5 @@ mat-form-field {
 
 mat-error {
   display: inline;
+  margin-right: 5px;
 }

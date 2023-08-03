@@ -9,42 +9,47 @@
       <mat-card-content>
 
         <mat-form-field>
-          <input matInput placeholder="Login" formControlName="login">
+          <input matInput placeholder="Login" formControlName="id">
 
-          <mat-error *ngIf="registerForm.hasError('required', 'login')">Login is required</mat-error>
-          <mat-error *ngIf="registerForm.hasError('minlength', 'login')">Minimal length: 5 symbols</mat-error>
+          <mat-error *ngIf="registerForm.hasError('required', 'id')">*Login is required</mat-error>
+          <mat-error *ngIf="registerForm.hasError('minlength', 'id')">*Minimal length: 5 symbols</mat-error>
+          <mat-error *ngIf="registerForm.hasError('noSpaceAllowed', 'id')">*No space allowed</mat-error>
 
         </mat-form-field>
 
         <mat-form-field>
           <input matInput placeholder="Username" formControlName="username">
 
-          <mat-error *ngIf="registerForm.hasError('required', 'username')">Username is required</mat-error>
-          <mat-error *ngIf="registerForm.hasError('minlength', 'username')">Minimal length: 5 symbols</mat-error>
-
+          <mat-error *ngIf="registerForm.hasError('required', 'username')">*Username is required</mat-error>
+          <mat-error *ngIf="registerForm.hasError('minlength', 'username')">*Minimal length: 5 symbols</mat-error>
+          <mat-error *ngIf="registerForm.hasError('noSpaceAllowed', 'username')">*No space allowed</mat-error>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Password" formControlName="password">
+          <input type="password" matInput placeholder="Password" formControlName="password">
 
-          <mat-error *ngIf="registerForm.hasError('required', 'password')">Password is required</mat-error>
-          <mat-error *ngIf="registerForm.hasError('minlength', 'password')">Minimal length: 5 symbols</mat-error>
+          <mat-error *ngIf="registerForm.hasError('required', 'password')">*Password is required</mat-error>
+          <mat-error *ngIf="registerForm.hasError('minlength', 'password')">*Minimal length: 5 symbols</mat-error>
+          <mat-error *ngIf="registerForm.hasError('noSpaceAllowed', 'password')">*No space allowed</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput placeholder="Confirm password" formControlName="confirmPassword">
 
-          <mat-error *ngIf="registerForm.hasError('required', 'confirmPassword')">Confirm password is
-            required</mat-error>
+          <mat-hint *ngIf="registerForm.get('confirmPassword')?.touched &&
+            registerForm.errors?.['passwordMatchError']" class="mat-hint">
+            *Password does not match
+          </mat-hint>
 
+          <mat-error *ngIf="registerForm.hasError('noSpaceAllowed', 'confirmPassword')">*No space allowed</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <input matInput placeholder="Email" formControlName="email">
 
-          <mat-error *ngIf="registerForm.hasError('required', 'email')">Email is required</mat-error>
-          <mat-error *ngIf="registerForm.hasError('email', 'email')">Not email</mat-error>
-
+          <mat-error *ngIf="registerForm.hasError('required', 'email')">*Email is required</mat-error>
+          <mat-error *ngIf="registerForm.hasError('email', 'email')">*Not email</mat-error>
+          <mat-error *ngIf="registerForm.hasError('noSpaceAllowed', 'email')">*No space allowed</mat-error>
         </mat-form-field>
 
 
