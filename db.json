@@ -1,10 +1,16 @@
 {
   "users": [
     {
-      "id": "edward1234",
+      "id": "edward@mail.com",
       "username": "edward",
       "password": "12345",
-      "email": "edw@edw",
+      "role": "user",
+      "isActive": true
+    },
+    {
+      "id": "edwardtest@mail.com",
+      "username": "edward123",
+      "password": "12345",
       "role": "user",
       "isActive": true
     }

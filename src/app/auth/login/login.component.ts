@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
@@ -27,16 +27,9 @@ import { noSpaceAllowed } from '../validators/noSpaceAllowed.validator';
     MatButtonModule,
   ],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  loginForm: any;
   userData: any;
-
-  loginForm = this.fb.group({
-    login: ['', [Validators.required, Validators.minLength(5), noSpaceAllowed]],
-    password: [
-      '',
-      [Validators.required, Validators.minLength(5), noSpaceAllowed],
-    ],
-  });
 
   constructor(
     private fb: FormBuilder,
@@ -46,17 +39,26 @@ export class LoginComponent {
   ) {
     sessionStorage.clear();
   }
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, , Validators.email, noSpaceAllowed]],
+      password: [
+        '',
+        [Validators.required, Validators.minLength(5), noSpaceAllowed],
+      ],
+    });
+  }
 
   submitForm() {
     if (this.loginForm.valid) {
       this.authService
-        .getUserByID(this.loginForm.value.login)
+        .getUserByID(this.loginForm.value.email)
         .subscribe((res) => {
           this.userData = res;
           console.log(this.userData);
           if (this.userData.password === this.loginForm.value.password) {
             if (this.userData.isActive) {
-              sessionStorage.setItem('username', this.userData.id);
+              sessionStorage.setItem('useremail', this.userData.id);
               sessionStorage.setItem('userrole', this.userData.role);
               this.router.navigate(['']);
             } else {
@@ -68,4 +70,6 @@ export class LoginComponent {
         });
     }
   }
+
+ 
 }

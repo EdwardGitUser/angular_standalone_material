@@ -9,7 +9,7 @@ export function uniqueIDCheck(authService: AuthService): AsyncValidatorFn {
         const user = users.find(
           (user: User) => user.id?.toLowerCase() === control.value.toLowerCase()
         );
-        return user ? { loginExists: true } : null;
+        return user ? { emailExists: true } : null;
       })
     );
   };

@@ -6,7 +6,6 @@ export interface User {
   id: string | null | undefined;
   username: string | null | undefined;
   password: string | null | undefined;
-  email: string | null | undefined;
   role: string | null | undefined;
   isActive: boolean | null | undefined;
 }
@@ -22,7 +21,7 @@ export class AuthService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl);
   }
-  // login = id
+  // email = id
   getUserByID(id: string | null | undefined) {
     return this.http.get<any>(this.apiUrl + '/' + id);
   }

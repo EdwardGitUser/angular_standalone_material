@@ -43,15 +43,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = this.fb.group(
       {
-        //id = login
+        //id = email
         id: [
           '',
           {
-            validators: [
-              Validators.required,
-              Validators.minLength(5),
-              noSpaceAllowed,
-            ],
+            validators: [Validators.required, Validators.email, noSpaceAllowed],
             asyncValidators: uniqueIDCheck(this.authService),
             updateOn: 'blur',
           },
@@ -65,7 +61,6 @@ export class RegisterComponent implements OnInit {
           [Validators.required, Validators.minLength(5), noSpaceAllowed],
         ],
         confirmPassword: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.email, noSpaceAllowed]],
         role: ['user'],
         isActive: [true],
       },
@@ -75,13 +70,9 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  get userLogin() {
-    return this.registerForm.get('id');
-  }
   get confirmPassword() {
     return this.registerForm.get('confirmPassword');
   }
-
   //спеціально задаєм setError для поля сonfirmpassword щоб mat-error спрацьовував
   //бо mat-error спрацьовує на помилки тільки полів, а на помилки форми вцілому він не спрацьовує
   onPasswordInput() {
@@ -94,11 +85,10 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       // щоб не давати цілу форму з полем confirm password
       const userToAdd: User = {
-        //id = login
+        //id = email
         id: this.registerForm.value.id,
         username: this.registerForm.value.username,
         password: this.registerForm.value.password,
-        email: this.registerForm.value.email,
         role: this.registerForm.value.role,
         isActive: this.registerForm.value.isActive,
       };

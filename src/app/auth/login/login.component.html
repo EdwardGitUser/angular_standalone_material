@@ -1,6 +1,6 @@
 <div class="loginForm">
-  <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
-    <mat-card>
+  <mat-card>
+    <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
 
       <mat-card-header>
         <h2>User Login</h2>
@@ -8,11 +8,11 @@
 
       <mat-card-content>
         <mat-form-field>
-          <input matInput placeholder="Login" formControlName="login">
+          <input matInput placeholder="Email" formControlName="email">
 
-          <mat-error *ngIf="loginForm.hasError('required', 'login')">Login is required</mat-error>
-          <mat-error *ngIf="loginForm.hasError('minlength', 'login')">Minimal length: 5 symbols</mat-error>
-          <mat-error *ngIf="loginForm.hasError('noSpaceAllowed', 'login')">*No space allowed</mat-error>
+          <mat-error *ngIf="loginForm.hasError('required', 'email')">Email is required</mat-error>
+          <mat-error *ngIf="loginForm.hasError('email', 'email')">Email not valid</mat-error>
+          <mat-error *ngIf="loginForm.hasError('noSpaceAllowed', 'email')">*No space allowed</mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -29,6 +29,10 @@
         <button mat-flat-button color="primary" [disabled]="!loginForm.valid">Submit </button>
 
       </mat-card-actions>
-    </mat-card>
-  </form>
+    </form>
+
+ 
+ 
+  </mat-card>
+
 </div>
