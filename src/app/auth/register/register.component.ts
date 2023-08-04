@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -12,8 +12,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
 //Validators
-import { matchPassword } from '../validators/matchPassword.validator';
+import { passwordMatchValidator } from '../validators/matchPassword.validator';
 import { noSpaceAllowed } from '../validators/noSpaceAllowed.validator';
+import { uniqueIDCheck } from '../validators/asyncUniqueIDCheck.validator';
 
 @Component({
   selector: 'app-register',
@@ -29,28 +30,8 @@ import { noSpaceAllowed } from '../validators/noSpaceAllowed.validator';
     MatButtonModule,
   ],
 })
-export class RegisterComponent {
-  registerForm = this.fb.group(
-    {
-      //id = login
-      id: ['', [Validators.required, Validators.minLength(5), noSpaceAllowed]],
-      username: [
-        '',
-        [Validators.required, Validators.minLength(5), noSpaceAllowed],
-      ],
-      password: [
-        '',
-        [Validators.required, Validators.minLength(5), noSpaceAllowed],
-      ],
-      confirmPassword: ['', [Validators.required, noSpaceAllowed]],
-      email: ['', [Validators.required, Validators.email, noSpaceAllowed]],
-      role: ['user'],
-      isActive: [true],
-    },
-    {
-      validators: matchPassword,
-    }
-  );
+export class RegisterComponent implements OnInit {
+  registerForm: any;
 
   constructor(
     private fb: FormBuilder,
@@ -58,6 +39,56 @@ export class RegisterComponent {
     private router: Router,
     private toastr: ToastrService
   ) {}
+
+  ngOnInit(): void {
+    this.registerForm = this.fb.group(
+      {
+        //id = login
+        id: [
+          '',
+          {
+            validators: [
+              Validators.required,
+              Validators.minLength(5),
+              noSpaceAllowed,
+            ],
+            asyncValidators: uniqueIDCheck(this.authService),
+            updateOn: 'blur',
+          },
+        ],
+        username: [
+          '',
+          [Validators.required, Validators.minLength(5), noSpaceAllowed],
+        ],
+        password: [
+          '',
+          [Validators.required, Validators.minLength(5), noSpaceAllowed],
+        ],
+        confirmPassword: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.email, noSpaceAllowed]],
+        role: ['user'],
+        isActive: [true],
+      },
+      {
+        validators: passwordMatchValidator,
+      }
+    );
+  }
+
+  get userLogin() {
+    return this.registerForm.get('id');
+  }
+  get confirmPassword() {
+    return this.registerForm.get('confirmPassword');
+  }
+
+  //спеціально задаєм setError для поля сonfirmpassword щоб mat-error спрацьовував
+  //бо mat-error спрацьовує на помилки тільки полів, а на помилки форми вцілому він не спрацьовує
+  onPasswordInput() {
+    if (this.registerForm.hasError('passwordMismatch'))
+      this.confirmPassword?.setErrors([{ passwordMismatch: true }]);
+    else this.confirmPassword?.setErrors(null);
+  }
 
   submitForm() {
     if (this.registerForm.valid) {

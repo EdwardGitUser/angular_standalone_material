@@ -23,10 +23,10 @@ export class AuthService {
     return this.http.get<User[]>(this.apiUrl);
   }
   // login = id
-  getUserByID(id: any) {
+  getUserByID(id: string | null | undefined) {
     return this.http.get<any>(this.apiUrl + '/' + id);
   }
-  addUser(formData: User) {
-    return this.http.post(this.apiUrl, formData);
+  addUser(userData: User) {
+    return this.http.post(this.apiUrl, userData);
   }
 }
