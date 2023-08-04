@@ -23,7 +23,7 @@ export class AuthService {
   }
   // email = id
   getUserByID(id: string | null | undefined) {
-    return this.http.get<any>(this.apiUrl + '/' + id);
+    return this.http.get<User>(this.apiUrl + '/' + id);
   }
   addUser(userData: User) {
     return this.http.post(this.apiUrl, userData);

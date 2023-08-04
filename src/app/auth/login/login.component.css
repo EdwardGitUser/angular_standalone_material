@@ -18,3 +18,7 @@ mat-error {
   display: inline;
   margin-right: 5px;
 }
+
+.google-logo {
+  margin: 10px auto;
+}
