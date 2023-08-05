@@ -10,12 +10,11 @@ import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-
 @NgModule({
   declarations: [AppComponent],
   imports: [

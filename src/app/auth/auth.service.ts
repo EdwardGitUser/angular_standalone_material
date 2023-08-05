@@ -26,6 +26,6 @@ export class AuthService {
     return this.http.get<User>(this.apiUrl + '/' + id);
   }
   addUser(userData: User) {
-    return this.http.post(this.apiUrl, userData);
+    return this.http.post<User>(this.apiUrl, userData);
   }
 }

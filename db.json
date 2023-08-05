@@ -6,6 +6,13 @@
       "password": null,
       "role": "googleUser",
       "isActive": true
+    },
+    {
+      "id": "edwarddominator@gmail.com",
+      "username": "Едік Пасенючок",
+      "password": null,
+      "role": "googleUser",
+      "isActive": false
     }
   ]
 }

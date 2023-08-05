@@ -22,3 +22,7 @@ mat-error {
 .google-logo {
   margin: 10px auto;
 }
+
+button {
+  margin: 0 auto;
+}

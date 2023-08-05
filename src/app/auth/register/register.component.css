@@ -18,6 +18,7 @@ mat-error {
   display: inline;
   margin-right: 5px;
 }
-.mat-hint {
-  color: red !important;
+
+button {
+  margin: 0 auto;
 }

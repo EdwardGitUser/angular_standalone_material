@@ -1,0 +1,11 @@
+.mat-table {
+  margin: 0 auto;
+  width: 80vw;
+}
+mat-paginator {
+  margin-top: 25px;
+}
+.mat-table-header {
+  display: flex;
+  justify-content: space-between;
+}
