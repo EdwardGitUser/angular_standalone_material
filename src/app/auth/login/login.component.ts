@@ -6,6 +6,7 @@ import {
   Validators,
   FormGroup,
 } from '@angular/forms';
+
 import { AuthService, User } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -20,8 +21,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { noSpaceAllowed } from '../validators/noSpaceAllowed.validator';
 
 //Google auth
-import { SocialAuthService } from '@abacritt/angularx-social-login';
-import { GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+import {
+  SocialAuthService,
+  GoogleLoginProvider,
+  GoogleSigninButtonModule,
+} from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-login',
