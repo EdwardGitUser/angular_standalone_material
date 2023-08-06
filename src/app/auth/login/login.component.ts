@@ -61,15 +61,17 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.googleAuth();
-
     this.createLoginForm();
+    this.googleAuth();
   }
 
   createLoginForm(): FormGroup {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(5)]],
+      email: ['', [Validators.required, Validators.email, noSpaceAllowed]],
+      password: [
+        '',
+        [Validators.required, Validators.minLength(5), noSpaceAllowed],
+      ],
     });
     return this.loginForm;
   }
@@ -80,9 +82,8 @@ export class LoginComponent implements OnInit {
       console.log(this.googleUser);
 
       const userToAdd: User = {
-        //id = email
-        id: this.googleUser.email,
         username: this.googleUser.firstName + ' ' + this.googleUser.lastName,
+        email: this.googleUser.email,
         password: null,
         role: 'googleUser',
         isActive: true,
@@ -91,46 +92,63 @@ export class LoginComponent implements OnInit {
       //Провіряєм чи такий юзер існує в БД за його emailом, якшо існує то не регіструєм
       //і він просто входить на сайт
       //якщо юзера з таким emailом не існує в БД то також входим на сайт але заносим у БД його дані
-      this.authService.getUserByID(userToAdd.id).subscribe(
+      this.authService.getUserByEmail(userToAdd.email).subscribe({
         //if user exist
-        () => {
-          this.toastr.success('You signed in as GoogleUser');
-          this.router.navigate(['main']);
-          this.loggedIn = true;
-        },
-
-        //if user do not exist
-        (error) => {
-          this.authService.addUser(userToAdd).subscribe((result) => {
-            this.toastr.success('You signed in and registered');
-            console.log(result);
+        next: (res) => {
+          if (
+            res &&
+            res.length != 0 &&
+            res.length < 2 &&
+            res[0].email === userToAdd.email
+          ) {
+            this.toastr.success('You signed in as GoogleUser');
             this.router.navigate(['main']);
             this.loggedIn = true;
-          });
-        }
-      );
+          } else {
+            //if user do not exist
+            this.authService.addUser(userToAdd).subscribe((result) => {
+              this.toastr.success('You signed in and registered');
+              console.log('User added: ' + result);
+              this.router.navigate(['main']);
+              this.loggedIn = true;
+            });
+          }
+        },
+
+        error: (err) => {
+          console.log('You got error when validating user ' + err);
+        },
+      });
     });
   }
 
   submitForm() {
     if (this.loginForm.valid) {
-      this.authService
-        .getUserByID(this.loginForm.value.email)
-        .subscribe((res) => {
-          this.userData = res;
-          console.log(this.userData);
-          if (this.userData.password === this.loginForm.value.password) {
-            if (this.userData.isActive) {
-              sessionStorage.setItem('useremail', this.userData.id);
-              sessionStorage.setItem('userrole', this.userData.role);
-              this.router.navigate(['main']);
-            } else {
-              this.toastr.error('Inactive user');
-            }
+      this.authService.getUserByEmail(this.loginForm.value.email).subscribe({
+        next: (res) => {
+          if (
+            res &&
+            res.length != 0 &&
+            res.length < 2 &&
+            res[0].email === this.loginForm.value.email &&
+            res[0].password === this.loginForm.value.password
+          ) {
+            this.toastr.success('You signed in');
+            this.router.navigate(['main']);
+            this.loggedIn = true;
           } else {
-            this.toastr.error('Password does not match with the Login');
+            console.log(this.loginForm.value.email);
+            console.log(this.loginForm.value.password);
+            this.toastr.warning('Cant log in, invalid credentials');
           }
-        });
+        },
+        error: (err) => {
+          this.toastr.warning('Cant log in, invalid credentials');
+        },
+      });
+    } else {
+      console.log('form invalid');
+      console.log(this.loginForm.value);
     }
   }
 }

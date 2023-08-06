@@ -14,7 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 //Validators
 import { passwordMatchValidator } from '../validators/matchPassword.validator';
 import { noSpaceAllowed } from '../validators/noSpaceAllowed.validator';
-import { uniqueIDCheck } from '../validators/asyncUniqueIDCheck.validator';
+import { uniqueEmailCheck } from '../validators/asyncUniqueIDCheck.validator';
 
 @Component({
   selector: 'app-register',
@@ -44,17 +44,17 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group(
       {
         //id = email
-        id: [
-          '',
-          {
-            validators: [Validators.required, Validators.email, noSpaceAllowed],
-            asyncValidators: uniqueIDCheck(this.authService),
-            updateOn: 'blur',
-          },
-        ],
         username: [
           '',
           [Validators.required, Validators.minLength(5), noSpaceAllowed],
+        ],
+        email: [
+          '',
+          {
+            validators: [Validators.required, Validators.email, noSpaceAllowed],
+            asyncValidators: uniqueEmailCheck(this.authService),
+            updateOn: 'blur',
+          },
         ],
         password: [
           '',
@@ -85,9 +85,8 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       // щоб не давати цілу форму з полем confirm password
       const userToAdd: User = {
-        //id = email
-        id: this.registerForm.value.id,
         username: this.registerForm.value.username,
+        email: this.registerForm.value.email,
         password: this.registerForm.value.password,
         role: this.registerForm.value.role,
         isActive: this.registerForm.value.isActive,
@@ -108,6 +107,6 @@ export class RegisterComponent implements OnInit {
     } else {
       this.toastr.warning('Form is not valid!');
     }
-    console.log(this.registerForm);
+    console.log(this.registerForm.value);
   }
 }

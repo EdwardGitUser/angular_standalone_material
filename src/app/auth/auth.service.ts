@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface User {
-  id: string | null | undefined;
   username: string | null | undefined;
+  email: string | null | undefined;
   password: string | null | undefined;
   role: string | null | undefined;
   isActive: boolean | null | undefined;
@@ -21,9 +21,8 @@ export class AuthService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl);
   }
-  // email = id
-  getUserByID(id: string | null | undefined) {
-    return this.http.get<User>(this.apiUrl + '/' + id);
+  getUserByEmail(email: string | null | undefined) {
+    return this.http.get<User[]>(this.apiUrl + '?email=' + email);
   }
   addUser(userData: User) {
     return this.http.post<User>(this.apiUrl, userData);

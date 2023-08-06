@@ -1,18 +1,20 @@
 {
   "users": [
     {
-      "id": "edwardpasenyuk@gmail.com",
-      "username": "Edward Pasenyuk",
-      "password": null,
-      "role": "googleUser",
-      "isActive": true
+      "username": "ededed",
+      "email": "ed@ed12",
+      "password": "ededed",
+      "role": "user",
+      "isActive": true,
+      "id": 1
     },
     {
-      "id": "edwarddominator@gmail.com",
       "username": "Едік Пасенючок",
+      "email": "edwarddominator@gmail.com",
       "password": null,
       "role": "googleUser",
-      "isActive": false
+      "isActive": true,
+      "id": 2
     }
   ]
 }

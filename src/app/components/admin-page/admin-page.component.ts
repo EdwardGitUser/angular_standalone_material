@@ -30,7 +30,7 @@ export class AdminPageComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  displayedColumns: string[] = ['username', 'id', 'role', 'isActive'];
+  displayedColumns: string[] = ['id', 'username', 'email', 'role', 'isActive'];
 
   constructor(private authService: AuthService) {
     this.loadUsers();

@@ -9,12 +9,12 @@
       <mat-card-content>
 
         <mat-form-field>
-          <input matInput placeholder="Email" formControlName="id">
+          <input matInput placeholder="Email" formControlName="email">
 
-          <mat-error *ngIf="registerForm.hasError('required', 'id')">*Email is required</mat-error>
-          <mat-error *ngIf="registerForm.hasError('email', 'id')">*Email not valid</mat-error>
-          <mat-error *ngIf="registerForm.hasError('noSpaceAllowed', 'id')">*No space allowed</mat-error>
-          <mat-error *ngIf="registerForm.hasError('emailExists', 'id')">*Email already exists</mat-error>
+          <mat-error *ngIf="registerForm.hasError('required', 'email')">*Email is required</mat-error>
+          <mat-error *ngIf="registerForm.hasError('email', 'email')">*Email not valid</mat-error>
+          <mat-error *ngIf="registerForm.hasError('noSpaceAllowed', 'email')">*No space allowed</mat-error>
+          <mat-error *ngIf="registerForm.hasError('emailExists', 'email')">*Email already exists</mat-error>
         </mat-form-field>
 
         <mat-form-field>
