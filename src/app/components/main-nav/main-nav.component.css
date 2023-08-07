@@ -1,14 +1,12 @@
 .sidenav-container {
-  height: auto;
+  height: 100%;
 }
 
 .sidenav {
-  display: none;
   width: 200px;
 }
 
 .sidenav .mat-toolbar {
-  width: auto;
   background: inherit;
 }
 
@@ -22,14 +20,8 @@
   flex: 1 1 auto;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .sidenav {
-    display: block;
-  }
-  .sidenav-container {
-    height: 100%;
-  }
-  .navbar-links {
     display: none;
   }
 }

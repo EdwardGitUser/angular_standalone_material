@@ -5,32 +5,29 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { RouterLink } from '@angular/router';
 
-// Material
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  selector: 'app-main-nav',
+  templateUrl: './main-nav.component.html',
+  styleUrls: ['./main-nav.component.css'],
   standalone: true,
   imports: [
-    AsyncPipe,
-    NgIf,
     RouterLink,
-    MatListModule,
+    NgIf,
+    AsyncPipe,
     MatToolbarModule,
-    MatMenuModule,
-    MatIconModule,
     MatButtonModule,
     MatSidenavModule,
+    MatListModule,
+    MatIconModule,
   ],
 })
-export class HeaderComponent {
+export class MainNavComponent {
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver

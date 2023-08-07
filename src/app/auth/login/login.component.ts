@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
 
   //user який ввійшов через гул
   googleUser: any;
-  loggedIn: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -58,6 +57,7 @@ export class LoginComponent implements OnInit {
     private socialService: SocialAuthService
   ) {
     sessionStorage.clear();
+    localStorage.clear();
   }
 
   ngOnInit(): void {
@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
       const userToAdd: User = {
         username: this.googleUser.firstName + ' ' + this.googleUser.lastName,
         email: this.googleUser.email,
-        password: null,
+        password: '',
         role: 'googleUser',
         isActive: true,
       };
@@ -102,15 +102,23 @@ export class LoginComponent implements OnInit {
             res[0].email === userToAdd.email
           ) {
             this.toastr.success('You signed in as GoogleUser');
+
+            sessionStorage.setItem('username', res[0].username);
+            sessionStorage.setItem('email', res[0].email);
+            sessionStorage.setItem('role', res[0].role);
+
             this.router.navigate(['main']);
-            this.loggedIn = true;
           } else {
             //if user do not exist
             this.authService.addUser(userToAdd).subscribe((result) => {
               this.toastr.success('You signed in and registered');
-              console.log('User added: ' + result);
+              console.log('User added: ' + userToAdd);
+
+              sessionStorage.setItem('username', userToAdd.username);
+              sessionStorage.setItem('email', userToAdd.email);
+              sessionStorage.setItem('role', userToAdd.role);
+
               this.router.navigate(['main']);
-              this.loggedIn = true;
             });
           }
         },
@@ -125,6 +133,7 @@ export class LoginComponent implements OnInit {
   submitForm() {
     if (this.loginForm.valid) {
       this.authService.getUserByEmail(this.loginForm.value.email).subscribe({
+        //res = []
         next: (res) => {
           if (
             res &&
@@ -134,8 +143,12 @@ export class LoginComponent implements OnInit {
             res[0].password === this.loginForm.value.password
           ) {
             this.toastr.success('You signed in');
+
+            sessionStorage.setItem('username', res[0].username);
+            sessionStorage.setItem('email', res[0].email);
+            sessionStorage.setItem('role', res[0].role);
+
             this.router.navigate(['main']);
-            this.loggedIn = true;
           } else {
             console.log(this.loginForm.value.email);
             console.log(this.loginForm.value.password);

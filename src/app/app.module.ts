@@ -15,6 +15,8 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MainNavComponent } from './components/main-nav/main-nav.component';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -25,6 +27,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ToastrModule.forRoot(),
     HeaderComponent,
     FooterComponent,
+    MainNavComponent,
     SocialLoginModule,
   ],
   providers: [
