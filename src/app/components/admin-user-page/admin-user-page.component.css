@@ -1,0 +1,8 @@
+.main {
+  display: flex;
+}
+
+mat-form-field {
+  display: flex;
+  width: 200px;
+}

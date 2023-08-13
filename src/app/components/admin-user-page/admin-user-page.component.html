@@ -1,0 +1,70 @@
+<div class="main">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>User Profile</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <h4 mat-line>Username: {{ user?.username }}</h4>
+        </mat-list-item>
+
+        <mat-list-item>
+          <h4 mat-line>Email: {{ user?.email }}</h4>
+        </mat-list-item>
+
+        <mat-list-item>
+          <h4 mat-line>Password: {{ user?.password }}</h4>
+        </mat-list-item>
+
+        <mat-list-item>
+          <h4 mat-line>isActive: {{ user?.isActive }}</h4>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 mat-line>Role: {{ user?.role }}</h4>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="userForm">
+    <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+      <mat-card>
+        <mat-card-header>
+          <h2>Changed User Profile</h2>
+        </mat-card-header>
+
+        <mat-card-content>
+
+          <mat-form-field>
+            New username:
+            <input matInput placeholder={{user?.username}} formControlName="username">
+          </mat-form-field>
+          <mat-form-field>
+            New email:
+            <input matInput placeholder={{user?.email}} formControlName="email">
+          </mat-form-field>
+          <mat-form-field>
+            New password:
+            <input matInput placeholder={{user?.password}} formControlName="password">
+          </mat-form-field>
+          <mat-form-field>
+            New role:
+            <input matInput placeholder={{user?.role}} formControlName="role">
+          </mat-form-field>
+
+          <label for="isActive">Status:</label>
+          <select id="isActive" formControlName="isActive">
+            <option value=true>True</option>
+            <option value=false>False</option>
+          </select>
+
+
+        </mat-card-content>
+        <mat-card-actions>
+          <button type="submit">Submit</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+</div>

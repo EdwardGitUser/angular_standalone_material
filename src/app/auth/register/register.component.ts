@@ -43,7 +43,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = this.fb.group(
       {
-        //id = email
         username: [
           '',
           [Validators.required, Validators.minLength(5), noSpaceAllowed],
@@ -73,6 +72,7 @@ export class RegisterComponent implements OnInit {
   get confirmPassword() {
     return this.registerForm.get('confirmPassword');
   }
+
   //спеціально задаєм setError для поля сonfirmpassword щоб mat-error спрацьовував
   //бо mat-error спрацьовує на помилки тільки полів, а на помилки форми вцілому він не спрацьовує
   onPasswordInput() {

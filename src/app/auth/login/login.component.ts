@@ -95,12 +95,7 @@ export class LoginComponent implements OnInit {
       this.authService.getUserByEmail(userToAdd.email).subscribe({
         //if user exist
         next: (res) => {
-          if (
-            res &&
-            res.length != 0 &&
-            res.length < 2 &&
-            res[0].email === userToAdd.email
-          ) {
+          if (res.length === 1 && res[0].email === userToAdd.email) {
             this.toastr.success('You signed in as GoogleUser');
 
             sessionStorage.setItem('username', res[0].username);
@@ -136,9 +131,7 @@ export class LoginComponent implements OnInit {
         //res = []
         next: (res) => {
           if (
-            res &&
-            res.length != 0 &&
-            res.length < 2 &&
+            res.length === 1 &&
             res[0].email === this.loginForm.value.email &&
             res[0].password === this.loginForm.value.password
           ) {

@@ -1,0 +1,6 @@
+<div *ngIf="user">
+  <h2>{{ user[0].username }}</h2>
+  <p>Email: {{ user[0].email }}</p>
+  <p>Role: {{ user[0].role }}</p>
+  <p>Active: {{ user[0].isActive ? 'Yes' : 'No' }}</p>
+</div>
