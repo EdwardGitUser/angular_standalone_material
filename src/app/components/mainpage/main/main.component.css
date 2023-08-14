@@ -1,0 +1,11 @@
+.pet-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 10px;
+}
+
+.hero-text {
+  font-size: 25pt;
+  padding: 10px;
+}
