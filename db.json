@@ -4,7 +4,7 @@
       "username": "edward123",
       "email": "edwardpasenyuk@gmail.com",
       "password": "12345",
-      "role": "user",
+      "role": "admin",
       "isActive": "false",
       "id": 1
     },

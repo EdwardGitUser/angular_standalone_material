@@ -13,8 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './core/header/header.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +24,6 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
     ToastrModule.forRoot(),
     HeaderComponent,
-    FooterComponent,
     SocialLoginModule,
   ],
   providers: [

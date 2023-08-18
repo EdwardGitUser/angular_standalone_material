@@ -1,0 +1,7 @@
+<!-- Assuming this is within your Angular component's template -->
+<div *ngIf="(user$ | async) as user">
+  <p>User Name: {{ user.username }}</p>
+  <p>User Email: {{ user.email }}</p>
+  <p>User Role: {{ user.role }}</p>
+  <p>User Status: {{ user.isActive }}</p>
+</div>

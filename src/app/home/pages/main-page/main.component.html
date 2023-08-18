@@ -1,0 +1,11 @@
+<section class="hero-section">
+  <h2 class="hero-text">
+    Discover Pets to walk near you
+  </h2>
+</section>
+
+<div class="pet-list-wrapper">
+  <article class="pet-list">
+    <app-product-card *ngFor="let product of productList" [product]="product"></app-product-card>
+  </article>
+</div>

@@ -1,0 +1,34 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="main">Main</a>
+      <a mat-list-item [hidden]="!isLoggedIn" routerLink="profile">Profile</a>
+      <a mat-list-item [hidden]="isLoggedIn" routerLink="login">Login</a>
+      <a mat-list-item [hidden]="isLoggedIn" routerLink="register">Register</a>
+      <a mat-list-item [hidden]="!isLoggedIn" routerLink="logout">Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>angular_standalone_project</span>
+
+      <div class="navbar-links">
+        <button routerLink="main" mat-button>Main</button>
+        <button [hidden]="!isAdmin" routerLink="admin" mat-button>Admin</button>
+        <button [hidden]="!isLoggedIn" routerLink="profile" mat-button>Profile</button>
+        <span class="header-spacer"></span>
+
+        <button [hidden]="isLoggedIn" routerLink="login" mat-button>Login</button>
+        <button [hidden]="isLoggedIn" routerLink="register" mat-button>Registration</button>
+        <button [hidden]="!isLoggedIn" routerLink="logout" mat-button>Logout</button>
+      </div>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,29 @@
+.loginForm {
+  display: flex;
+  justify-content: center;
+  margin: 6em;
+}
+
+mat-card {
+  width: 435px;
+  background-color: rgb(255, 255, 255);
+}
+
+mat-form-field {
+  width: 400px;
+  display: flex;
+  margin-top: 10px;
+}
+
+mat-error {
+  display: inline;
+  margin-right: 5px;
+}
+
+.google-logo {
+  margin: 10px auto;
+}
+
+button {
+  margin: 0 auto;
+}
