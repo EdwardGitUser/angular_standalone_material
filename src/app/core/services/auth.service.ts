@@ -27,10 +27,10 @@ export class AuthService {
   }
 
   // щоб замість масиву вертало тільки одного юзера
-  getUserByEmail(email: string): Observable<User | null> {
+  getUserByEmail(email: string): Observable<User> {
     return this.http
       .get<User[]>(this.apiUrl + '?email=' + email)
-      .pipe(map((users) => (users.length > 0 ? users[0] : null)));
+      .pipe(map((users) => users[0]));
   }
 
   addUser(userData: User) {
