@@ -12,9 +12,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
 //Validators
-import { passwordMatchValidator } from '../../../core/authentication/validators/matchPassword.validator';
-import { noSpaceAllowed } from '../../../core/authentication/validators/noSpaceAllowed.validator';
-import { uniqueEmailCheck } from '../../../core/authentication/validators/asyncUniqueIDCheck.validator';
+import { passwordMatchValidator } from '../../../core/validators/matchPassword.validator';
+import { noSpaceAllowed } from '../../../core/validators/noSpaceAllowed.validator';
+import { uniqueEmailCheck } from '../../../core/validators/asyncUniqueIDCheck.validator';
 
 @Component({
   selector: 'app-register',

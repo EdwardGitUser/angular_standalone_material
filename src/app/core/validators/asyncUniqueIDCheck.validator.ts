@@ -1,5 +1,5 @@
 import { AbstractControl, AsyncValidatorFn } from '@angular/forms';
-import { AuthService, User } from '../../services/auth.service';
+import { AuthService, User } from '../services/auth.service';
 import { map } from 'rxjs/operators';
 
 export function uniqueEmailCheck(authService: AuthService): AsyncValidatorFn {

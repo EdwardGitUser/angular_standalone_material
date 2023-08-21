@@ -18,7 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
 //Validators
-import { noSpaceAllowed } from '../../../core/authentication/validators/noSpaceAllowed.validator';
+import { noSpaceAllowed } from '../../../core/validators/noSpaceAllowed.validator';
 
 //Google auth
 import {
@@ -26,6 +26,8 @@ import {
   GoogleLoginProvider,
   GoogleSigninButtonModule,
 } from '@abacritt/angularx-social-login';
+
+
 
 @Component({
   selector: 'app-login',
