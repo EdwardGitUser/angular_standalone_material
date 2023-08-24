@@ -1,8 +1,11 @@
-<article class="pet-card">
-  <img class="pet-img" src="{{product.photoUrl}}" alt="Photo of {{product.name}}">
-  <p class="pet-headline">Meet <span class="pet-name">{{product.name}}</span></p>
-  <p class="pet-description">
-    <span class="pet-name">{{product.ownerName}}</span> wants you to know this about {{product.name}}:
+<article class="product-card">
+  <img class="product-img" src="{{product.photoUrl}}" alt="Photo of {{product.name}}">
+  <p class="product-headline">This is <span class="product-name">{{product.name}}</span></p>
+  <p class="product-description">
     {{product.description}}
+  </p>
+  <p class="product-price">
+    Price:
+    <span>{{product.price}}</span>
   </p>
 </article>

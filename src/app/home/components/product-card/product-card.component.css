@@ -1,4 +1,4 @@
-.pet-card {
+.product-card {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -8,22 +8,22 @@
   height: 550px;
 }
 
-.pet-img {
+.product-img {
   border-radius: 10px 10px 0 0;
   width: 300px;
   height: 300px;
 }
 
-.pet-name {
+.product-name {
   font-weight: bolder;
 }
 
-.pet-description,
-.pet-headline,
-.pet-learn-more {
+.product-description,
+.product-price,
+.product-headline{
   padding: 10px;
 }
 
-.pet-headline {
+.product-headline {
   font-size: 18pt;
 }

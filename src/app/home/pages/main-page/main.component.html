@@ -1,14 +1,15 @@
-<section class="hero-section">
-  <h2 class="hero-text">
-    Discover Pets to walk near you
+<section class="section">
+  <h2 class="text">
+    New Products
   </h2>
 </section>
 
-<div class="pet-list-wrapper">
-  <article class="pet-list">
-    <app-product-card *ngFor="let product of productList" [product]="product"></app-product-card>
+<div class="product-list-wrapper">
+  <article class="product-list">
+    <app-product-card *ngFor="let product of products$ | async" [product]="product"></app-product-card>
   </article>
 </div>
+
 
 <!-- <div *ngIf="productList">
   <h2>Product List</h2>
