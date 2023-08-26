@@ -34,6 +34,7 @@ import {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,
+  providers:[AuthService],
   imports: [
     GoogleSigninButtonModule,
     NgIf,

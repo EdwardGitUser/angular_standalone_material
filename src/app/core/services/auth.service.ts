@@ -10,9 +10,9 @@ export interface User {
   isActive: boolean;
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable(
+  // providedIn: 'root',
+)
 export class AuthService {
   constructor(private http: HttpClient) {}
 

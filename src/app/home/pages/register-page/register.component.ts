@@ -21,6 +21,7 @@ import { uniqueEmailCheck } from '../../../core/validators/asyncUniqueIDCheck.va
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
   standalone: true,
+  providers:[AuthService],
   imports: [
     NgIf,
     ReactiveFormsModule,

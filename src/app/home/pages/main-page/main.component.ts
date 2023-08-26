@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/core/services/product.service';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
   standalone: true,
+  providers:[ProductService],
   imports: [CommonModule, ProductCardComponent, AsyncPipe],
 })
 export class MainPageComponent {
